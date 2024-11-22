@@ -6,7 +6,7 @@ from django.db import models
 # Create your models here.
 
 class User(AbstractUser):
-    user_id = models.AutoField(primary_key=True, verbose_name="사용자 ID")  # 기본 키
+    USER_ID = models.AutoField(primary_key=True, verbose_name="사용자 ID")  # 기본 키
     username = models.CharField(max_length=50, unique=True, verbose_name="아이디")  # 아이디
     NICKNAME = models.CharField(max_length=50, verbose_name="닉네임")  # 닉네임
     SCHOOL_EMAIL = models.EmailField(max_length=50, verbose_name="학교 이메일", null=True, blank=True)  # 학교 이메일

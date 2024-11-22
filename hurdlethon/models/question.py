@@ -4,7 +4,9 @@ from .user import User
 
 class Question(models.Model):
     QUESTION_ID=models.AutoField(primary_key=True) #질문 아이디
+
     LECTURE_ID=models.ForeignKey(Lecture,on_delete=models.CASCADE)#교과목 ID
+    
     TITLE=models.CharField(max_length=50)
     CONTENT=models.TextField() #질문내용
     CHECKED=models.BooleanField(default=False) #채택 여부

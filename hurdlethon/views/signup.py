@@ -1,6 +1,7 @@
 from rest_framework import generics, mixins, status
 from rest_framework.response import Response
 from ..serializers.user import UserSerializer
+from ..models.user import User
 
 
 class SignupView(mixins.CreateModelMixin, generics.GenericAPIView):
@@ -15,10 +16,10 @@ class SignupView(mixins.CreateModelMixin, generics.GenericAPIView):
             return Response(
                 {
                     "message":"회원가입 성공",
-                    "user":{
-                        "student_number": user.STUDENT_NUMBER,
-                        "id": user.username,
-                    },
+                    # "id":user.username,
+                    # "nickname":user.nickname,
+                    # "email":user.email,
+                    # "major":user.major,
                 },
                 status=status.HTTP_201_CREATED
             )
