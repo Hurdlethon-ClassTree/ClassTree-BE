@@ -7,7 +7,8 @@ class QuestionSerializer(serializers.ModelSerializer):
     USER_ID = UserSerializer(read_only=True)
     class Meta:
         model = Question
-        fields = ['QUESTION_ID','USER_ID','TITLE', 'CONTENT', 'LECTURE_NAME', 'POINT', 'CREATED_AT', 'MODIFIED_AT']
+        fields = ['QUESTION_ID', 'LECTURE_NAME', 'TITLE', 'CONTENT', 'CHECKED', 
+                  'POINT', 'CREATED_AT', 'MODIFIED_AT', 'CURIOUS', 'USER_ID', "LECTURE_ID"]
         read_only_fields = ['QUESTION_ID', 'CHECKED', 'CREATED_AT', 'MODIFIED_AT']  # 읽기 전용 필드 설정
 
     def update(self, instance, validated_data):

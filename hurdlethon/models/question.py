@@ -11,7 +11,7 @@ class Question(models.Model):
     POINT=models.PositiveIntegerField(default=0) #포인트
     CREATED_AT=models.DateTimeField(auto_now_add=True)#생성일자
     MODIFIED_AT=models.DateTimeField(auto_now=True)
-
+    CURIOUS = models.PositiveIntegerField(default=0) #궁금해요
 
     USER_ID=models.ForeignKey(User,on_delete=models.CASCADE) #작성자
     def __str__(self):
