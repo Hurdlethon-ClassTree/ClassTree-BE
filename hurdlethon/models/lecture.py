@@ -2,6 +2,7 @@ from django.db import models
 
 class Lecture(models.Model):
     LECTURE_ID=models.AutoField(primary_key=True)#과목 id
+    PROFESSOR=models.CharField(max_length=50)#교수
     LECTURE_CODE=models.CharField(max_length=50)
     NAME=models.CharField(max_length=50)
     LECTURE_DAY=models.CharField(max_length=50)
