@@ -17,15 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from hurdlethon.views import LoginView, SignupView, QuestionListCreateView, QuestionDetailView, AnswerListCreateView, \
-    AnswerDetailView
+from hurdlethon.views.login import LoginView
+from hurdlethon.views.signup import SignupView
+from hurdlethon.views.question import QuestionListCreateView, QuestionDetailView
+from hurdlethon.views.answer import AnswerListCreateView, AnswerDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("login/",LoginView.as_view()),
     path("signup/",SignupView.as_view()),
     path("questions/", QuestionListCreateView.as_view()),
-path('questions/<int:pk>/', QuestionDetailView.as_view(), name='question_detail'),
-path('answers/', AnswerListCreateView.as_view(), name='answer_list_create'),
+    path('questions/<int:pk>/', QuestionDetailView.as_view(), name='question_detail'),
+    path('answers/', AnswerListCreateView.as_view(), name='answer_list_create'),
     path('answers/<int:pk>/', AnswerDetailView.as_view(), name='answer_detail'),
 ]
