@@ -1,14 +1,14 @@
 from django.db import models
 
 class Lecture(models.Model):
-    LECTURE_ID=models.AutoField(primary_key=True)#과목 id
-    PROFESSOR=models.CharField(max_length=50)#교수
-    LECTURE_CODE=models.CharField(unique=True, max_length=50)
-    NAME=models.CharField(max_length=50)
-    LECTURE_DAY=models.CharField(max_length=50)
-    LECTURE_TIME=models.CharField(max_length=50)
-    #lecture 학기, 년도
-    SEMESTER=models.CharField(max_length=50, default='1')
-    YEAR=models.CharField(max_length=50, default='2024')
+    lecture_id = models.AutoField(primary_key=True)  # 과목 ID
+    professor = models.CharField(max_length=50)  # 교수
+    lecture_code = models.CharField(unique=True, max_length=50)  # 강의 코드
+    name = models.CharField(max_length=50)  # 강의명
+    lecture_day = models.CharField(max_length=50)  # 강의 요일
+    lecture_time = models.CharField(max_length=50)  # 강의 시간
+    semester = models.CharField(max_length=50, default='1')  # 학기
+    year = models.CharField(max_length=50, default='2024')  # 년도
+
     def __str__(self):
-        return f"{self.LECTURE_ID}: {self.LECTURE_CODE} {self.NAME}"
+        return f"{self.lecture_id}: {self.lecture_code} {self.name}"

@@ -3,6 +3,8 @@ from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework import generics
 from ..serializers.login import LoginSerializer
+from ..serializers.user import UserSerializer
+from rest_framework import status
 
 class LoginView(generics.GenericAPIView):
     authentication_classes = []
@@ -22,5 +24,5 @@ class LoginView(generics.GenericAPIView):
             raise AuthenticationFailed("아이디 또는 비밀번호가 틀렸습니다")
 
         login(request, user)
-
-        return Response({"message": "로그인 성공", "user": {"username": user.username, "student_number": user.STUDENT_NUMBER}})
+        serializer = UserSerializer(user)
+        return Response({"message": "로그인 성공", "user": serializer.data},  status=status.HTTP_200_OK)

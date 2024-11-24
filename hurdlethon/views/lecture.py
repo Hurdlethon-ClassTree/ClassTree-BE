@@ -10,7 +10,7 @@ from ..serializers.lecture import LectureSerializer
 from ..serializers.question import QuestionSerializer
 
 class LectureListView(generics.GenericAPIView):
-    permission_classes = []
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Lecture.objects.all()
     serializer_class = LectureSerializer
     def get(self, request):
@@ -19,6 +19,7 @@ class LectureListView(generics.GenericAPIView):
         return Response(serializer.data)
 
 class LectureDetailView(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Lecture.objects.prefetch_related('questions').all()
     serializer_class = QuestionSerializer
     def get(self, request, pk):
