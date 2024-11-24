@@ -10,6 +10,7 @@ class UserAdmin(admin.ModelAdmin):
         'user_id', 'username', 'nickname', 'school_email', 
         'student_number', 'major', 'created_at', 'total_point', 'interests'
     )
+    list_editable = ('total_point',)  # 목록에서 포인트 바로 수정 가능
     search_fields = ('username', 'nickname')
     readonly_fields = ('user_id',)
 
@@ -32,7 +33,7 @@ class QuestionAdmin(admin.ModelAdmin):
 class AnswerAdmin(admin.ModelAdmin):
     list_display = (
         'answer_id', 'question_id', 'created_at', 'modified_at', 
-        'user_id', 'lecture_id', 'like'
+        'user_id', 'like'
     )
-    list_filter = ('created_at', 'modified_at', 'lecture_id', 'user_id')
+    list_filter = ('created_at', 'modified_at', 'user_id')
     search_fields = ('content', 'question_id__title')
