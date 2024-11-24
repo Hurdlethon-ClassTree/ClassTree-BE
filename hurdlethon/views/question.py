@@ -7,12 +7,13 @@ class QuestionListCreateView(generics.ListCreateAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
     permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.AllowAny]
 
     def perform_create(self, serializer):
         serializer.save(USER_ID=self.request.user)
         
 class QuestionDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Question.objects.all()
+    queryset = Question.objects.select_related("answer").all()
     serializer_class = QuestionSerializer
     permission_classes = [permissions.IsAuthenticated]
     #질문내용 수정
