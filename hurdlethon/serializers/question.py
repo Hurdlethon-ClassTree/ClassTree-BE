@@ -3,12 +3,16 @@ from .user import UserSerializer
 from ..models.question import Question
 
 class QuestionSerializer(serializers.ModelSerializer):
-    LECTURE_NAME = serializers.CharField(source='QUESTION_ID.LECTURE_ID', read_only=True)
-    USER_ID = UserSerializer(read_only=True)
+    lecture_name = serializers.CharField(source='lecture_id.name', read_only=True)
+    user = UserSerializer(read_only=True)
+
     class Meta:
         model = Question
-        fields = ['QUESTION_ID', 'CONTENT', 'LECTURE_ID', 
-                 'LECTURE_NAME', 'CREATED_AT', 'MODIFIED_AT', 'USER_ID', 'CHECKED']
+        fields = [
+            'question_id', 'content', 'lecture_id',
+            'lecture_name', 'created_at', 'modified_at', 'user', 'checked'
+        ]
+
     def update(self, instance, validated_data):
-        instance.CHECKED=validated_data.get('CHECKED', instance.CHECKED)
+        instance.checked = validated_data.get('checked', instance.checked)
         return super().update(instance, validated_data)
