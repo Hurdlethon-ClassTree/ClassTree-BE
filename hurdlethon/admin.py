@@ -15,8 +15,8 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Lecture)
 class LectureAdmin(admin.ModelAdmin):
-    list_display = ('lecture_id', 'name', 'lecture_day', 'lecture_time', 'professor', 'semester', 'year')
-    search_fields = ('lecture_id', 'name', 'professor')
+    list_display = ('lecture_id', 'lecture_name', 'lecture_day', 'lecture_time', 'professor', 'semester', 'year')
+    search_fields = ('lecture_id', 'lecture_name', 'professor')
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
