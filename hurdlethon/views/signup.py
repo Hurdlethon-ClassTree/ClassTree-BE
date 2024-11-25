@@ -16,10 +16,6 @@ class SignupView(mixins.CreateModelMixin, generics.GenericAPIView):
             return Response(
                 {
                     "message":"회원가입 성공",
-                    # "id":user.username,
-                    # "nickname":user.nickname,
-                    # "email":user.email,
-                    # "major":user.major,
                 },
                 status=status.HTTP_201_CREATED
             )
