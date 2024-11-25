@@ -35,8 +35,10 @@ class QuestionListCreateView(generics.ListCreateAPIView):
         if user.total_point < point:
             raise serializers.ValidationError("포인트가 부족합니다.")
 
-        # 질문 저장
-        serializer.save(user_id=self.request.user)
+        # 질문
+        serializer.save(user_id=user,
+                        nickname=user.nickname
+                    )
 
         # 포인트 차감
         user.total_point -= point
