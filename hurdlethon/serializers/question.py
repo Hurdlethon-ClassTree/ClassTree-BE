@@ -17,7 +17,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
         fields = [ #answer도 추가함
-            'title', 'content', 'lecture_id','point',
+            'title', 'content', 'lecture_id','point', 'nickname',
             'lecture_name', 'created_at', 'modified_at', 'user', 'checked', 'curious', 'answers', 'anonymous']
 
     def get_answers(self, obj):
