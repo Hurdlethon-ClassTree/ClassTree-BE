@@ -5,16 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a76192ad-b5e9-430c-a85b-7b7e75c2310c" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/hurdlethon/serializers/mypage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hurdlethon/views/mypage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/djangoProject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hurdlethon/models/answer.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/models/answer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hurdlethon/models/question.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/models/question.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/migrations/0001_initial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/hurdlethon/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/models/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hurdlethon/serializers/answer.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/serializers/answer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hurdlethon/serializers/question.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/serializers/question.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hurdlethon/views/answer.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/views/answer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/serializers/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/serializers/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hurdlethon/views/question.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/views/question.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/views/signup.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/views/signup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,6 +105,7 @@
       <workItem from="1732454907088" duration="11743000" />
       <workItem from="1732466782264" duration="2796000" />
       <workItem from="1732508668502" duration="305000" />
+      <workItem from="1732540075668" duration="12788000" />
     </task>
     <servers />
   </component>

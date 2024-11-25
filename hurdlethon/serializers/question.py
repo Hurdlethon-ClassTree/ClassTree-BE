@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from .answer import AnswerSerializer
-from .user import UserSerializer
+from .user import UserCreateSerializer
 from ..models import Lecture
 from ..models.question import Question
 from ..models.user import User
@@ -10,7 +10,7 @@ from ..models.lecture import Lecture
 #[GET] /question/<int:pk>/로 접근 시 얻는 정보
 class QuestionSerializer(serializers.ModelSerializer):
     lecture_name = serializers.CharField(source='lecture_id.name', read_only=True)
-    user = UserSerializer(read_only=True)
+    user = UserCreateSerializer(read_only=True)
     answers=AnswerSerializer(many=True, read_only=True)
     anonymous = serializers.BooleanField(write_only=True, required=False)  # 익명 여부
 
@@ -50,7 +50,7 @@ class QuestionUpdateSerializer(serializers.ModelSerializer):
     anonymous = serializers.BooleanField(write_only=True, required=False)  # 익명 여부
     class Meta:
         model = Question
-        fields = ['content']  # 수정 시 변경 가능한 필드만
+        fields = ['content','anonymous']  # 수정 시 변경 가능한 필드만
     def validate_point(self, value):
         """
         작성자가 충분한 포인트를 가지고 있는지 확인.

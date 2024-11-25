@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path
 
 from hurdlethon.views.lecture import LectureListView, LectureDetailView
+from hurdlethon.views.mypage import MypageView
 from hurdlethon.views.question import QuestionListCreateView, QuestionDetailView
 from hurdlethon.views.answer import AnswerListCreateView, AnswerDetailView
 from hurdlethon.views.signup import SignupView
@@ -22,6 +23,7 @@ urlpatterns = [
     path('question/<int:pk>/', QuestionDetailView.as_view(), name='question_detail'),
     path('question/<int:question_id>/answer/', AnswerListCreateView.as_view(), name='answer_list_create'),
     path('question/<int:question_id>/answer/<int:pk>/', AnswerDetailView.as_view(), name='answer_detail'),
+    path('mypage/', MypageView.as_view(), name='mypage'),
 
     path('logout/', Logout_view, name='logout'),  # 로그아웃 URL 추가
 

@@ -13,8 +13,9 @@ class User(AbstractUser):
     student_number = models.CharField(max_length=8, verbose_name="학번", null=True, blank=True)  # 학번
     major = models.CharField(max_length=50, verbose_name="전공", null=True, blank=True)  # 전공
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="생성 일자")  # 생성 일자
-    total_point = models.BigIntegerField(default=0, verbose_name="점수 총점")  # 점수 총점
-    interests = models.TextField(verbose_name="관심 있는 과목", null=True, blank=True)  # 관심 있는 과목
+    total_point = models.PositiveIntegerField(default=0, verbose_name="점수 총점")  # 점수 총점
+
+    interests = models.JSONField(default=[], verbose_name="관심 있는 과목", blank=True)  # 관심 있는 과목
     
     class Meta:
         db_table = 'user'
