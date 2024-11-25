@@ -12,22 +12,13 @@ class QuestionSerializer(serializers.ModelSerializer):
     lecture_name = serializers.CharField(source='lecture_id.name', read_only=True)
     user = UserSerializer(read_only=True)
     answers=AnswerSerializer(many=True, read_only=True)
+    anonymous = serializers.BooleanField(write_only=True, required=False)  # 익명 여부
 
     class Meta:
         model = Question
         fields = [ #answer도 추가함
             'title', 'content', 'lecture_id','point',
-            'lecture_name', 'created_at', 'modified_at', 'user', 'checked', 'curious', 'answers']
-    anonymous = serializers.BooleanField(write_only=True, required=False)  # 익명 여부
-
-    class Meta:
-        model = Question
-        fields = [
-            'question_id', 'title', 'content', 'checked', 'point',
-            'created_at', 'modified_at', 'curious', 'anonymous',
-            'lecture_id'
-        ]
-        read_only_fields = ['question_id', 'created_at', 'modified_at', 'curious', 'checked']
+            'lecture_name', 'created_at', 'modified_at', 'user', 'checked', 'curious', 'answers', 'anonymous']
 
     def get_answers(self, obj):
         answers=obj.answer_set.all()
@@ -39,9 +30,10 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 #/question/으로 질문 생성 시 사용
 class QuestionCreateSerializer(serializers.ModelSerializer):
+    anonymous = serializers.BooleanField(write_only=True, required=False)  # 익명 여부
     class Meta:
         model = Question
-        fields = ['title', 'content', 'point', 'lecture_id']  # 생성 시 작성 가능한 필드만
+        fields = ['title', 'content', 'point', 'lecture_id', 'anonymous']  # 생성 시 작성 가능한 필드만
 
     def validate_point(self, value):
         if value < 0:
@@ -55,6 +47,7 @@ class QuestionCreateSerializer(serializers.ModelSerializer):
 
 #/question/<int:pk>/로 질문 수정 시 사용
 class QuestionUpdateSerializer(serializers.ModelSerializer):
+    anonymous = serializers.BooleanField(write_only=True, required=False)  # 익명 여부
     class Meta:
         model = Question
         fields = ['content']  # 수정 시 변경 가능한 필드만
