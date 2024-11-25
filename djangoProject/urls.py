@@ -20,8 +20,8 @@ urlpatterns = [
 
     path("question/", QuestionListCreateView.as_view()),
     path('question/<int:pk>/', QuestionDetailView.as_view(), name='question_detail'),
-    path('answer/', AnswerListCreateView.as_view(), name='answer_list_create'),
-    path('answer/<int:pk>/', AnswerDetailView.as_view(), name='answer_detail'),
+    path('question/<int:question_id>/answer/', AnswerListCreateView.as_view(), name='answer_list_create'),
+    path('question/<int:question_id>/answer/<int:pk>/', AnswerDetailView.as_view(), name='answer_detail'),
 
     path('logout/', Logout_view, name='logout'),  # 로그아웃 URL 추가
 

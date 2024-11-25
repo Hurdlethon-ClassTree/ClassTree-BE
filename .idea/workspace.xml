@@ -5,19 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a76192ad-b5e9-430c-a85b-7b7e75c2310c" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/djangoProject.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/asgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/wsgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hurdlethon/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/models/answer.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/models/answer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/models/question.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/models/question.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/models/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/serializers/answer.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/serializers/answer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/serializers/question.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/serializers/question.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/views/answer.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/views/answer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/views/question.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/views/question.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,21 +101,13 @@
       <workItem from="1732189990159" duration="2541000" />
       <workItem from="1732201340243" duration="80000" />
       <workItem from="1732201858103" duration="1172000" />
+      <workItem from="1732454907088" duration="11743000" />
+      <workItem from="1732466782264" duration="2796000" />
+      <workItem from="1732508668502" duration="305000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/djangoProject/urls.py</url>
-          <line>16</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

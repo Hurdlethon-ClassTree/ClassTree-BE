@@ -1,19 +1,26 @@
 from rest_framework import serializers
+
+from .answer import AnswerSerializer
 from .user import UserSerializer
 from ..models import Lecture
 from ..models.question import Question
 
-#/question/<int:pk>/로 get요청 시 보내는 정보
+#[GET] /question/<int:pk>/로 접근 시 얻는 정보
 class QuestionSerializer(serializers.ModelSerializer):
     lecture_name = serializers.CharField(source='lecture_id.name', read_only=True)
     user = UserSerializer(read_only=True)
+    answers=AnswerSerializer(many=True, read_only=True)
 
     class Meta:
         model = Question
-        fields = [ #answer도 추가해야함
-            'title', 'content', 'lecture_id',
-            'lecture_name', 'created_at', 'modified_at', 'user', 'checked', 'curious'
+        fields = [ #answer도 추가함
+            'title', 'content', 'lecture_id','point',
+            'lecture_name', 'created_at', 'modified_at', 'user', 'checked', 'curious', 'answers'
         ]
+
+    def get_answers(self, obj):
+        answers=obj.answer_set.all()
+        return AnswerSerializer(answers, many=True).data
 
     def update(self, instance, validated_data):
         instance.checked = validated_data.get('checked', instance.checked)

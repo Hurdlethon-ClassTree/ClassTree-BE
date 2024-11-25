@@ -12,15 +12,16 @@ class QuestionListCreateView(generics.ListCreateAPIView):
     def get_serializer_class(self):
         if self.request.method == 'POST':
             return QuestionCreateSerializer
-        return QuestionCreateSerializer
+        return QuestionSerializer
 
     def perform_create(self, serializer):
         serializer.save(user_id=self.request.user)
 
 class QuestionDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Question.objects.select_related("lecture_id","user_id",).all()
-
+    queryset = Question.objects.select_related("lecture_id","user_id").prefetch_related("answers__user_id")
+    #queryset = Question.objects.all()
     permission_classes = [permissions.IsAuthenticated]
+    #serializer_class = QuestionSerializer
 
     #QuesitonUpdateSerializer
     #수정 시 content 설정
@@ -35,7 +36,7 @@ class QuestionDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         queryset=super().get_queryset()
-        if self.request.method in ['PUT', 'PATCH']:
+        if self.request.method in ['PUT', 'PATCH', 'DELETE']:
             return queryset.filter(user_id=self.request.user)
         #get 요청일 때는 모든 질문 볼 수 있음
         return queryset

@@ -14,5 +14,6 @@ class Question(models.Model):
     curious = models.PositiveIntegerField(default=0)  # 궁금해요
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)  # 작성자
 
+
     def __str__(self):
         return f"{self.question_id}: {self.title}"
