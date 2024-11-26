@@ -12,7 +12,7 @@ class AnswerSerializer(serializers.ModelSerializer):
             'question_id','question_title',
             'answer_id', 'content',
              'created_at', 'modified_at',
-            'user_id', 'lecture_id', 'like'
+            'user_id', 'lecture_id', 'like', 'is_checked'
         ]
 
 class AnswerUpdateSerializer(serializers.ModelSerializer):
