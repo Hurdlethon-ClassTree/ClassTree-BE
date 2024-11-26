@@ -44,7 +44,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
         model = User
         fields = [
             'username', 'student_number', 'password', 'nickname',
-            'email', 'major', 'school_email',
+            'email', 'major', 'school_email'
         ]
 
     def create(self, validated_data):

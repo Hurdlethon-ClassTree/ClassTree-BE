@@ -15,6 +15,10 @@ class User(AbstractUser):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="생성 일자")  # 생성 일자
     total_point = models.PositiveIntegerField(default=0, verbose_name="점수 총점")  # 점수 총점
 
+    # verification_code = models.IntegerField(null=True, blank=True)
+    # expiration_time = models.DateTimeField(null=True, blank=True)
+    # verified = models.BooleanField(default=False)
+
     interests = models.JSONField(default=[], verbose_name="관심 있는 과목", blank=True)  # 관심 있는 과목
     
     class Meta:
