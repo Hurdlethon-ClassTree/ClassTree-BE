@@ -3,6 +3,7 @@ from rest_framework.generics import ListAPIView
 from django.db.models import Q
 from rest_framework.response import Response
 
+from .question import QuestionListCreateView
 from ..models import Lecture
 from ..models.question import Question
 from ..serializers.lecture import LectureSerializer
@@ -33,45 +34,61 @@ class LectureListView(ListAPIView):
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
         return Response({"lecture_list": serializer.data})
-
 class LectureDetailView(ListAPIView):
+    """
+    Retrieves a lecture's details and its associated questions.
+    """
     permission_classes = [permissions.IsAuthenticated]
-    queryset = Lecture.objects.prefetch_related('questions').all()
     serializer_class = QuestionSerializer
+
     def get_queryset(self):
-        lecture_id = self.kwargs.get('pk')  # URL에서 강의 ID 가져오기
+        """
+        Returns the queryset of questions associated with a specific lecture.
+        """
+        lecture_id = self.kwargs.get('pk')  # Get lecture ID from URL
         try:
             lecture = Lecture.objects.prefetch_related('questions').get(pk=lecture_id)
         except Lecture.DoesNotExist:
-            raise NotFound("Lecture not found.")
-                # 기본 쿼리셋
-        
+            raise NotFound({"detail": "Lecture not found."})  # Raise a 404 error if lecture is not found
+
+        # Retrieve and filter questions related to this lecture
         queryset = lecture.questions.all()
 
-        # 쿼리 파라미터 처리
+        # Optional filtering based on query parameters
         checked = self.request.query_params.get('checked')
         curious_min = self.request.query_params.get('curious_min')
         point_min = self.request.query_params.get('point_min')
         sort_by = self.request.query_params.get('sort_by')
-        # print(f"Checked parameter value: {checked}")  # 로그 추가
-        # 필터링 적용
-        if checked is not None:
-            checked_value = checked.strip().lower() == 'true'  # 문자열 'true' -> True 변환
-            queryset = queryset.filter(checked=checked_value)
-        if curious_min is not None:
-            queryset = queryset.filter(curious__gte=int(curious_min))  # 궁금해요 최소값 필터링
-        if point_min is not None:
-            queryset = queryset.filter(point__gte=int(point_min))  # 포인트 최소값 필터링
 
-        # 정렬 적용
+        # Apply filters
+        if checked is not None:
+            queryset = queryset.filter(checked=checked.lower() == 'true')  # Filter by 'checked'
+        if curious_min is not None:
+            queryset = queryset.filter(curious__gte=int(curious_min))  # Filter by curious >= minimum
+        if point_min is not None:
+            queryset = queryset.filter(point__gte=int(point_min))  # Filter by point >= minimum
+
+        # Apply sorting
         if sort_by:
             queryset = queryset.order_by(sort_by)
-        
-        return queryset  # 강의와 연결된 질문 반환
+
+        return queryset
+
     def list(self, request, *args, **kwargs):
+        """
+        Customizes the response to include lecture details and related questions.
+        """
+        # Fetch the lecture
+        lecture_id = self.kwargs.get('pk')
+        try:
+            lecture = Lecture.objects.get(pk=lecture_id)
+        except Lecture.DoesNotExist:
+            return Response({"detail": "Lecture not found."}, status=404)
+
+        # Serialize and include questions
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
         return Response({
-            "lecture_id": self.kwargs.get('pk'),
+            "lecture_name": lecture.lecture_name,
             "questions": serializer.data
         })
