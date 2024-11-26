@@ -33,7 +33,7 @@ class QuestionAdmin(admin.ModelAdmin):
 class AnswerAdmin(admin.ModelAdmin):
     list_display = (
         'answer_id', 'question_id', 'created_at', 'modified_at', 
-        'user_id', 'like'
+        'user_id', 'like_count'
     )
     list_filter = ('created_at', 'modified_at', 'user_id')
     search_fields = ('content', 'question_id__title')

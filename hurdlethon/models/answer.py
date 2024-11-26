@@ -17,7 +17,7 @@ class Answer(models.Model):
 
     lecture_id = models.ForeignKey(Lecture, on_delete=models.CASCADE)  # 강의 ID
     
-    like = models.PositiveIntegerField(default=0)  # 좋아요 수
+    like_count = models.PositiveIntegerField(default=0)  # 좋아요 수
 
     is_checked = models.BooleanField(default=False)  # 채택 여부를 표시하는 필드
 
