@@ -34,6 +34,7 @@ class LectureListView(ListAPIView):
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
         return Response({"lecture_list": serializer.data})
+
 class LectureDetailView(ListAPIView):
     """
     Retrieves a lecture's details and its associated questions.

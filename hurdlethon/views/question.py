@@ -3,6 +3,7 @@ from ..models import Question, Lecture
 from ..serializers.question import QuestionCreateSerializer, QuestionUpdateSerializer, QuestionSerializer
 from rest_framework.response import Response
 from rest_framework import serializers
+from rest_framework.exceptions import PermissionDenied
 
 class QuestionListCreateView(generics.ListCreateAPIView):
     queryset = Question.objects.all()
@@ -56,7 +57,6 @@ class QuestionListCreateView(generics.ListCreateAPIView):
     
 
 class QuestionDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Question.objects.select_related("lecture_id","user_id").prefetch_related("answers__user_id")
     #queryset = Question.objects.all()
     permission_classes = [permissions.IsAuthenticated]
     #serializer_class = QuestionSerializer
@@ -73,11 +73,22 @@ class QuestionDetailView(generics.RetrieveUpdateDestroyAPIView):
         return QuestionUpdateSerializer
 
     def get_queryset(self):
-        queryset=super().get_queryset()
-        if self.request.method in ['PUT', 'PATCH', 'DELETE']:
-            return queryset.filter(user_id=self.request.user)
-        #get 요청일 때는 모든 질문 볼 수 있음
+        queryset = Question.objects.select_related("lecture_id", "user_id").prefetch_related("answers__user_id").all()
+        # print(queryset)
         return queryset
 
+    # def perform_update(self, serializer):
+    #     serializer.save(user_id=self.request.user)
     def perform_update(self, serializer):
-        serializer.save(user_id=self.request.user)
+        # 여기서 user_id를 다시 설정할 필요는 없음
+        serializer.save()
+    def perform_destroy(self, instance):
+        """
+        삭제 시 작성자만 삭제할 수 있도록 제한.
+        """
+        user = self.request.user
+        print(instance.user_id.pk)
+        print(user.pk)
+        if instance.user_id.pk != user.pk:
+            raise PermissionDenied("작성자만 질문을 삭제할 수 있습니다.")
+        instance.delete()  # 질문을 삭제

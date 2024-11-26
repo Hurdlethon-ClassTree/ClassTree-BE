@@ -9,7 +9,7 @@ from ..models.lecture import Lecture
 
 #[GET] /question/<int:pk>/로 접근 시 얻는 정보
 class QuestionSerializer(serializers.ModelSerializer):
-    lecture_name = serializers.CharField(source='lecture_id.name', read_only=True)
+    lecture_name = serializers.CharField(source='lecture_id.lecture_name', read_only=True)
     user = UserCreateSerializer(read_only=True)
     answers=AnswerSerializer(many=True, read_only=True)
     anonymous = serializers.BooleanField(write_only=True, required=False)  # 익명 여부
@@ -17,6 +17,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
         fields = [ #answer도 추가함
+            'question_id',
             'title', 'content', 'lecture_id','point', 'nickname',
             'lecture_name', 'created_at', 'modified_at', 'user', 'checked', 'curious', 'answers', 'anonymous']
 
@@ -46,37 +47,26 @@ class QuestionCreateSerializer(serializers.ModelSerializer):
         return value
 
 #/question/<int:pk>/로 질문 수정 시 사용
+# point 확인 필요 x, 익명 여부 처리 x, 질문작성자만 수정 가능하게
 class QuestionUpdateSerializer(serializers.ModelSerializer):
-    anonymous = serializers.BooleanField(write_only=True, required=False)  # 익명 여부
     class Meta:
         model = Question
-        fields = ['content','anonymous']  # 수정 시 변경 가능한 필드만
-    def validate_point(self, value):
+        fields = ['content']  # 수정 시 변경 가능한 필드만
+
+    def validate_content(self, value):
         """
-        작성자가 충분한 포인트를 가지고 있는지 확인.
+        작성자만 질문의 내용을 수정할 수 있도록 제한.
         """
+        question = self.instance  # 현재 수정하려는 질문
         user = self.context['request'].user
-        if user.total_point < value:  # User 모델에서 보유 포인트 확인
-            raise serializers.ValidationError("포인트가 부족합니다.")
+        if user.pk != question.user_id.pk:  # 현재 사용자가 작성자와 일치하지 않으면
+            raise serializers.ValidationError("작성자만 질문 내용을 수정할 수 있습니다.")
         return value
 
-    def create(self, validated_data):
+    def update(self, instance, validated_data):
         """
-        질문 생성 시 익명 여부 처리 및 사용자 포인트 차감.
+        content만 수정할 수 있도록.
         """
-        user = self.context['request'].user
-
-        # 익명 여부 처리
-        anonymous = validated_data.pop('anonymous', False)
-        nickname = "익명" if anonymous else user.nickname
-
-        # 질문 생성
-        question = Question.objects.create(
-            **validated_data
-        )
-
-        # 포인트 차감
-        user.total_point -= validated_data['point']  # 수정된 total_point 사용
-        user.save()
-
-        return question
+        instance.content = validated_data.get('content', instance.content)
+        instance.save()
+        return instance
