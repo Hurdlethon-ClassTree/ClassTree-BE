@@ -19,7 +19,7 @@ class QuestionSerializer(serializers.ModelSerializer):
         fields = [ #answer도 추가함
             'question_id',
             'title', 'content', 'lecture_id','point', 'nickname',
-            'lecture_name', 'created_at', 'modified_at', 'user', 'checked', 'curious', 'answers', 'anonymous']
+            'lecture_name', 'created_at', 'modified_at', 'user', 'checked', 'curious_count', 'answers', 'anonymous']
 
     def get_answers(self, obj):
         answers=obj.answer_set.all()

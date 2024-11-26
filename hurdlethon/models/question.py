@@ -11,7 +11,7 @@ class Question(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)  # 생성 일자
     modified_at = models.DateTimeField(auto_now=True)  # 수정 일자
     
-    curious = models.PositiveIntegerField(default=0)  # 궁금해요
+    curious_count = models.PositiveIntegerField(default=0)  # 궁금해요
     nickname = models.CharField(max_length=50, null=True, blank=True)  # 질문 작성자의 닉네임 
     anonymous = models.BooleanField(default=False)  # 익명 여부
 

@@ -13,6 +13,7 @@ from hurdlethon.views.login import LoginView
 from hurdlethon.views.logout import Logout_view
 
 from hurdlethon.views.check import CheckView 
+from hurdlethon.views.curious import CuriousView
 from django.http import HttpResponse
 
 urlpatterns = [
@@ -33,8 +34,8 @@ urlpatterns = [
     path('mypage/answer/', GetMyAnswers.as_view(), name='question_list_view'),
     path('favorite/', GetMyFavorite.as_view(), name='question_list_view'),
 
-    path('question/<int:question_id>/answer/checked', CheckView.as_view(), name='check_view'),
-
+    path('question/<int:question_id>/answer/checked', CheckView.as_view(), name='check_view'), # 답변 채택 여부 확인
+    path('question/<int:question_id>/curious', CuriousView.as_view(), name='curious_view'), # 질문 궁금해요
     path('logout/', Logout_view, name='logout'),  # 로그아웃 URL 추가
 
 ]
