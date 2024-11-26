@@ -10,16 +10,24 @@ from ..models.lecture import Lecture
 #[GET] /question/<int:pk>/로 접근 시 얻는 정보
 class QuestionSerializer(serializers.ModelSerializer):
     lecture_name = serializers.CharField(source='lecture_id.lecture_name', read_only=True)
-    user = UserCreateSerializer(read_only=True)
     answers=AnswerSerializer(many=True, read_only=True)
-    anonymous = serializers.BooleanField(write_only=True, required=False)  # 익명 여부
+    author = serializers.SerializerMethodField() # 동적 필드 : nickname or anonymous
+    professor = serializers.CharField(source='lecture_id.professor', read_only=True)
 
     class Meta:
         model = Question
-        fields = [ #answer도 추가함
-            'question_id',
-            'title', 'content', 'lecture_id','point', 'nickname',
-            'lecture_name', 'created_at', 'modified_at', 'user', 'checked', 'curious_count', 'answers', 'anonymous']
+        fields = [ #professor 추가함
+            'question_id', 'lecture_id','lecture_name', 'professor',
+            'title', 'content', 'curious_count','point', 'author',
+            'created_at', 'modified_at', 'checked', 'answers']
+
+    def get_author(self, obj):
+        """
+        익명 여부(anonymous)에 따라 작성자(author) 설정
+        """
+        if obj.anonymous:
+            return "anonymous"
+        return obj.nickname  # 익명이 아니면 닉네임 반환
 
     def get_answers(self, obj):
         answers=obj.answer_set.all()

@@ -5,15 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a76192ad-b5e9-430c-a85b-7b7e75c2310c" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/hurdlethon/serializers/mypage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hurdlethon/views/mypage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/djangoProject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hurdlethon/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/migrations/0002_answer_is_checked_alter_user_interests_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/migrations/0003_rename_curious_question_curious_count_curious.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/migrations/0004_rename_like_answer_like_count.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/migrations/0005_like.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/models/question.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/models/question.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hurdlethon/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/models/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hurdlethon/serializers/question.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/serializers/question.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hurdlethon/serializers/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/serializers/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/views/curious.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/views/curious.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/views/lecture.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/views/lecture.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/views/like.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/views/like.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/views/mypage.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/views/mypage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hurdlethon/views/question.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/views/question.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hurdlethon/views/signup.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/views/signup.py" afterDir="false" />
     </list>
@@ -41,20 +50,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Django 서버.djangoProject.executor": "Debug",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="djangoProject" type="Python.DjangoServer" factoryName="Django server">
       <module name="djangoProject" />
@@ -63,6 +74,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="djangoProject.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="SDK_NAME" value="Python 3.13 (djangoProject)" />
@@ -105,7 +117,11 @@
       <workItem from="1732454907088" duration="11743000" />
       <workItem from="1732466782264" duration="2796000" />
       <workItem from="1732508668502" duration="305000" />
-      <workItem from="1732540075668" duration="12788000" />
+      <workItem from="1732540075668" duration="13070000" />
+      <workItem from="1732557230790" duration="5545000" />
+      <workItem from="1732621614062" duration="741000" />
+      <workItem from="1732623095959" duration="2985000" />
+      <workItem from="1732636481642" duration="11241000" />
     </task>
     <servers />
   </component>

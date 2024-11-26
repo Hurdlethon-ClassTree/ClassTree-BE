@@ -90,6 +90,6 @@ class LectureDetailView(ListAPIView):
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
         return Response({
-            "lecture_name": lecture.lecture_name,
+            "lecture": LectureSerializer(lecture).data,
             "questions": serializer.data
         })

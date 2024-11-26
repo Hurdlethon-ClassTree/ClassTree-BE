@@ -12,14 +12,6 @@ class SignupView(mixins.CreateModelMixin, generics.GenericAPIView):
     permission_classes = []
     serializer_class = UserCreateSerializer
 
-    def get_serializer_context(self):
-        """
-        강의 개수를 동적으로 확인해 선택 가능한 개수 제한.
-        """
-        lectures = Lecture.objects.all()
-        return {"lectures": lectures}
-
-
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
@@ -29,11 +21,10 @@ class SignupView(mixins.CreateModelMixin, generics.GenericAPIView):
             return Response(
                 {
                     "message":"회원가입 성공",
-                    "username": user.username,
-                    "initial_points": user.total_point,
-                    # "interests": json.loads(user.interests),
-                    "interests": user.interests,
-
+                    # "username": user.username,
+                    # "initial_points": user.total_point,
+                    # "interests": user.interests
+                    "user":serializer.data
                 },
                 status=status.HTTP_201_CREATED
             )

@@ -1,7 +1,8 @@
 from tabnanny import verbose
-
+import json
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+
 
 # Create your models here.
 
@@ -15,8 +16,18 @@ class User(AbstractUser):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="생성 일자")  # 생성 일자
     total_point = models.PositiveIntegerField(default=0, verbose_name="점수 총점")  # 점수 총점
 
-    interests = models.JSONField(default=[], verbose_name="관심 있는 과목", blank=True)  # 관심 있는 과목
-    
+    interests = models.JSONField(default=list, verbose_name="관심 있는 과목", blank=True)  # 관심 있는 과목
+
     class Meta:
         db_table = 'user'
         verbose_name = "유저"
+
+    def set_interests(self, interests_list):
+        """리스트를 JSON 문자열로 변환하여 저장"""
+        self.interests = json.dumps(interests_list)
+
+    def get_interests(self):
+        """JSON 문자열을 리스트로 변환하여 반환"""
+        if isinstance(self.interests, str):
+            return json.loads(self.interests)
+        return self.interests
