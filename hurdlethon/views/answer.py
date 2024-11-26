@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from ..models.answer import Answer
 from ..models.question import Question
 from ..serializers.answer import AnswerSerializer, AnswerCreateSerializer, AnswerUpdateSerializer
+from rest_framework.exceptions import PermissionDenied
 
 
 class AnswerListCreateView(generics.ListCreateAPIView):
@@ -45,7 +46,7 @@ class AnswerDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         question_id = self.kwargs['question_id']
-        return Answer.objects.filter(question_id=question_id, user_id=self.request.user)
+        return Answer.objects.filter(question_id=question_id)
 
     def get_serializer_class(self):
         if self.request.method in ['PUT', 'PATCH']:
@@ -53,6 +54,14 @@ class AnswerDetailView(generics.RetrieveUpdateDestroyAPIView):
         return AnswerSerializer
 
     def perform_update(self, serializer): #작성자만 수정 가능
-        if serializer.instance.user_id != self.request.user:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         serializer.save()
+
+    def perform_destroy(self, instance):
+        """
+        작성자만 답변을 삭제할 수 있도록 제한.
+        """
+        user = self.request.user
+
+        if instance.user_id.pk != user.pk:
+            raise PermissionDenied("작성자만 답변을 삭제할 수 있습니다.")  # Permission denied if not the author
+        instance.delete()

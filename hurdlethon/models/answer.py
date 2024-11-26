@@ -16,7 +16,10 @@ class Answer(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)  # 작성자
 
     lecture_id = models.ForeignKey(Lecture, on_delete=models.CASCADE)  # 강의 ID
-    like = models.PositiveIntegerField(default=0)  # 좋아요 수
+    
+    like_count = models.PositiveIntegerField(default=0)  # 좋아요 수
+
+    is_checked = models.BooleanField(default=False)  # 채택 여부를 표시하는 필드
 
     def __str__(self):
         return f"Answer by {self.user_id.username} to {self.question_id.title}"
