@@ -87,8 +87,8 @@ class QuestionDetailView(generics.RetrieveUpdateDestroyAPIView):
         삭제 시 작성자만 삭제할 수 있도록 제한.
         """
         user = self.request.user
-        print(instance.user_id.pk)
-        print(user.pk)
+        # print(instance.user_id.pk)
+        # print(user.pk)
         if instance.user_id.pk != user.pk:
             raise PermissionDenied("작성자만 질문을 삭제할 수 있습니다.")
         instance.delete()  # 질문을 삭제
