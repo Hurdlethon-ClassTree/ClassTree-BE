@@ -27,10 +27,12 @@ class User(AbstractUser):
 
     def set_interests(self, interests_list):
         """리스트를 JSON 문자열로 변환하여 저장"""
-        self.interests = json.dumps(interests_list)
+        # self.interests = json.dumps(interests_list)
+        self.interests = interests_list
+        return self.interests
 
     def get_interests(self):
         """JSON 문자열을 리스트로 변환하여 반환"""
-        if isinstance(self.interests, str):
-            return json.loads(self.interests)
+        # if isinstance(self.interests, str):
+        #     return json.loads(self.interests)
         return self.interests
