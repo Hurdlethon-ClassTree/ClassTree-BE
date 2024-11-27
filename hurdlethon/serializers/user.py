@@ -35,7 +35,6 @@ class UserCreateSerializer(serializers.ModelSerializer):
     interests = serializers.ListField(
         child=serializers.IntegerField(),
         write_only=True,
-        min_length=1,
         max_length=10,  # 최대 10개의 관심 강의 허용
     )
 
@@ -50,7 +49,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
         if len(value) != len(set(value)):
             raise ValidationError('Interest must be unique')
         if not Lecture.objects.filter(lecture_id__in=value).exists():
-            raise ValidationError('One or more interests is valid')
+            raise ValidationError('Invalid lecture id.')
         return value
 
     def save(self, **kwargs):
