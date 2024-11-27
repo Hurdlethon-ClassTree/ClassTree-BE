@@ -12,25 +12,12 @@ from rest_framework.exceptions import NotFound
 
 class LectureListView(ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    queryset = Lecture.objects.all()
     serializer_class = LectureSerializer
+    # Serializer로 만들었습니다
     def get_queryset(self):
-        queryset = Lecture.objects.all()
-        lecture_name = self.request.query_params.get('lecture_name')
-        semester = self.request.query_params.get('semester')
-        professor = self.request.query_params.get('professor')
-        semester = self.request.query_params.get('semester') 
+        return self.serializer_class.filter_queryset(self.request)
 
-        if lecture_name:
-            queryset = queryset.filter(lecture_name__icontains=lecture_name)  # 강의명 검색
-        if semester:
-            queryset = queryset.filter(semester=semester)  # 학기 필터
-        if professor:
-            queryset = queryset.filter(professor__icontains=professor)  # 교수 이름 검색
-        if semester:
-            queryset = queryset.filter(semester=semester)
-        return queryset
-    def list(self, request, *args, **kwargs):
+    def get(self,request, *args, **kwargs):
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
         return Response({"lecture_list": serializer.data})
