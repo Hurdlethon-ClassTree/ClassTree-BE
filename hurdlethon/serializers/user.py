@@ -45,12 +45,12 @@ class UserCreateSerializer(serializers.ModelSerializer):
             'major', 'school_email','interests'
         ]
 
-    def validate_interests(self, value):
-        if len(value) != len(set(value)):
-            raise ValidationError('Interest must be unique')
-        if not Lecture.objects.filter(lecture_id__in=value).exists():
-            raise ValidationError('Invalid lecture id.')
-        return value
+    # def validate_interests(self, value):
+    #     if len(value) != len(set(value)):
+    #         raise ValidationError('Interest must be unique')
+    #     if not Lecture.objects.filter(lecture_id__in=value).exists():
+    #         raise ValidationError('Invalid lecture id.')
+    #     return value
 
     def save(self, **kwargs):
         hashed_password = make_password(self.validated_data['password'])
