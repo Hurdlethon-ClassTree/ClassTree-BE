@@ -7,6 +7,7 @@ from ..serializers.user import UserCreateSerializer
 from ..models.user import User
 import json
 import re
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
 
 class SignupView(mixins.CreateModelMixin, generics.GenericAPIView):
@@ -14,7 +15,8 @@ class SignupView(mixins.CreateModelMixin, generics.GenericAPIView):
     permission_classes = []
     serializer_class = UserCreateSerializer
     queryset = User.objects.none()  # 빈 queryset 설정
-
+    
+    @csrf_exempt
     def post(self, request, *args, **kwargs):
         '''회원가입 처리'''
         school_email = request.data.get('school_email')
@@ -53,6 +55,7 @@ class SignupView(mixins.CreateModelMixin, generics.GenericAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     #[GET] /signup 시 강의목록 반환
+    @csrf_exempt
     def get(self, request, *args, **kwargs):
         # 강의 선택을 위한 강의 목록 반환
         lectures = Lecture.objects.values('lecture_id', 'lecture_name')  # 강의 ID와 이름만 가져오기
@@ -62,6 +65,8 @@ class SignupView(mixins.CreateModelMixin, generics.GenericAPIView):
             },
             status=status.HTTP_200_OK
         )
+        
+    @csrf_exempt
     def is_valid_student_id(self, student_id):
         """학번이 8자리 숫자인지 확인"""
         return bool(re.match(r'^\d{8}$', str(student_id)))

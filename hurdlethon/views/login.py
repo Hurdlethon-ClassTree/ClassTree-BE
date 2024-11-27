@@ -5,12 +5,15 @@ from rest_framework import generics
 from ..serializers.login import LoginSerializer
 from ..serializers.user import UserSerializer
 from rest_framework import status
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+
 
 class LoginView(generics.GenericAPIView):
     authentication_classes = []
     permission_classes = []
     serializer_class = LoginSerializer
 
+    @csrf_exempt
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
