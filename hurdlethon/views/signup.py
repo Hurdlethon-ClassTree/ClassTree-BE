@@ -2,6 +2,7 @@ from rest_framework import generics, mixins, status, serializers
 from rest_framework.response import Response
 
 from ..models import Lecture
+from ..models.email import EmailVerification
 from ..serializers.user import UserCreateSerializer
 from ..models.user import User
 import json
@@ -28,6 +29,7 @@ class SignupView(mixins.CreateModelMixin, generics.GenericAPIView):
 
         # 회원가입 진행
         serializer = UserCreateSerializer(data=request.data)
+
         if serializer.is_valid():
             user=serializer.save()
             user.total_point=100 # initial point
