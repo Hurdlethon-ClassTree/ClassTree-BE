@@ -6,6 +6,7 @@ from ..models.email import EmailVerification
 from ..serializers.user import UserCreateSerializer
 from ..models.user import User
 import json
+import re
 
 
 class SignupView(mixins.CreateModelMixin, generics.GenericAPIView):
@@ -17,6 +18,8 @@ class SignupView(mixins.CreateModelMixin, generics.GenericAPIView):
     def post(self, request, *args, **kwargs):
         '''회원가입 처리'''
         school_email = request.data.get('school_email')
+        student_number = request.data.get('student_number')
+        # print(student_number, type(student_number))
         # 이메일 인증 여부 확인
         try:
             verification = EmailVerification.objects.get(school_email=school_email)
@@ -25,6 +28,10 @@ class SignupView(mixins.CreateModelMixin, generics.GenericAPIView):
         if not verification.is_valid():
             return Response({"message": "인증번호가 만료되었습니다. 다시 인증을 요청해주세요."}, status=status.HTTP_400_BAD_REQUEST)
 
+        # 학번 검증 (8자리 숫자)
+        if not self.is_valid_student_id(student_number):
+            return Response({"message": "학번은 8자리 숫자여야 합니다."}, status=status.HTTP_400_BAD_REQUEST)
+        
         # 회원가입 진행
         serializer = UserCreateSerializer(data=request.data)
 
@@ -55,3 +62,6 @@ class SignupView(mixins.CreateModelMixin, generics.GenericAPIView):
             },
             status=status.HTTP_200_OK
         )
+    def is_valid_student_id(self, student_id):
+        """학번이 8자리 숫자인지 확인"""
+        return bool(re.match(r'^\d{8}$', str(student_id)))
