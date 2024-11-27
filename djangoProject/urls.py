@@ -16,6 +16,7 @@ from hurdlethon.views.logout import Logout_view
 from hurdlethon.views.check import CheckView 
 from hurdlethon.views.curious import CuriousView
 from hurdlethon.views.like import LikeView
+from hurdlethon.views.recent_question import RecentQuestionsView
 from django.http import HttpResponse
 
 from hurdlethon.views.verify import VerifyVerificationCodeView
@@ -45,6 +46,7 @@ urlpatterns = [
 
     path("signup/email/", SendVerificationCodeView.as_view(), name="send_verification_code"),
     path("signup/verify/", VerifyVerificationCodeView.as_view(), name="verify_code"),
+    path("recent/question/", RecentQuestionsView.as_view(), name="recent_questions"),
 
     path('logout/', Logout_view, name='logout'),  # 로그아웃 URL 추가
 
