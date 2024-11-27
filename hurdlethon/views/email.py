@@ -4,7 +4,12 @@ from rest_framework import status
 from ..models.email import EmailVerification
 from ..models.user import User
 from django.core.mail import send_mail
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+
+
+
 class SendVerificationCodeView(APIView):
+    @csrf_exempt
     def post(self, request, *args, **kwargs):
         school_email = request.data.get("school_email")
         if not school_email:

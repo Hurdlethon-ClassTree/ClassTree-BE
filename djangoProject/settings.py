@@ -145,8 +145,14 @@ DEFAULT_FROM_EMAIL = 'noreply@school.com'
 
 #CORS 관련 추가
 CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000'
-,'http://localhost:3000']#(, 원하는 포트 지정)
-CORS_ALLOW_ALL_ORIGINS = True #(모든 포트 허용)
+,'http://localhost:8080']#(, 원하는 포트 지정)
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+]
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8080",
+]
 
 #HTTP methods 추가
 CORS_ALLOW_METHODS = (
