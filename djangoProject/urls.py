@@ -18,6 +18,7 @@ from hurdlethon.views.curious import CuriousView
 from hurdlethon.views.like import LikeView
 from hurdlethon.views.recent_question import RecentQuestionsView
 from hurdlethon.views.noanswerquestion import NoanswerQuestionsListView
+from hurdlethon.views.recent_lecture import RecentQuestionLectureView
 from django.http import HttpResponse
 
 from hurdlethon.views.verify import VerifyVerificationCodeView
@@ -47,7 +48,9 @@ urlpatterns = [
 
     path("signup/email/", SendVerificationCodeView.as_view(), name="send_verification_code"),
     path("signup/verify/", VerifyVerificationCodeView.as_view(), name="verify_code"),
+
     path("recent/question/", RecentQuestionsView.as_view(), name="recent_questions"),
+    path("recent/lecture", RecentQuestionLectureView.as_view(), name="recent_lecture"),
 
     path("noanswer/", NoanswerQuestionsListView.as_view(), name="no_answer_questions"),
 
