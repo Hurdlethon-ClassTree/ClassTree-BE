@@ -12,7 +12,7 @@ class EmailVerification(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def is_valid(self):
-        return now() < self.created_at + timedelta(minutes=5)
+        return now() < self.code_expiration
 
     @classmethod
     def save_verification_code(cls, email):
