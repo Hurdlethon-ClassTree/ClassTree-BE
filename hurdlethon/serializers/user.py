@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = [
             'user_id', 'username', 'student_number', 'nickname',
-            'email', 'total_point', 'major', 'school_email', 'interests'
+            'total_point', 'major', 'school_email', 'interests'
         ]
         read_only_fields = ['total_point']
 
@@ -43,7 +43,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
         model = User
         fields = [
             'username', 'student_number', 'password', 'nickname',
-            'email', 'major', 'school_email','interests'
+            'major', 'school_email','interests'
         ]
 
     def validate_interests(self, value):

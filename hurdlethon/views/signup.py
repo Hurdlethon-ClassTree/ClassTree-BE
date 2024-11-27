@@ -16,8 +16,6 @@ class SignupView(mixins.CreateModelMixin, generics.GenericAPIView):
 
     def post(self, request, *args, **kwargs):
         '''회원가입 처리'''
-        serializer = self.get_serializer(data=request.data)
-
         school_email = request.data.get('school_email')
         # 이메일 인증 여부 확인
         try:

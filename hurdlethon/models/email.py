@@ -1,15 +1,18 @@
 from django.db import models
 from django.utils import timezone
 from datetime import timedelta
+from django.utils.timezone import now
 import random
 
 class EmailVerification(models.Model):
     school_email = models.EmailField(unique=True)
-    verification_code = models.IntegerField(max_length=6)
+    verification_code = models.IntegerField()
+    #verification_code = models.CharField(max_length=6)
     code_expiration = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def is_valid(self):
-        return self.code_expiration > timezone.now()
+        return now() < self.created_at + timedelta(minutes=5)
 
     @classmethod
     def save_verification_code(cls, email):

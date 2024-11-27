@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a76192ad-b5e9-430c-a85b-7b7e75c2310c" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/hurdlethon/models/email.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hurdlethon/views/email.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hurdlethon/views/verify.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hurdlethon/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hurdlethon/migrations/0002_alter_user_interests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hurdlethon/migrations/0003_alter_user_interests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hurdlethon/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/models/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/models/email.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/models/email.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hurdlethon/serializers/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/serializers/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hurdlethon/views/signup.py" beforeDir="false" afterPath="$PROJECT_DIR$/hurdlethon/views/signup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +108,7 @@
       <workItem from="1732623095959" duration="2985000" />
       <workItem from="1732636481642" duration="11241000" />
       <workItem from="1732674585825" duration="2606000" />
-      <workItem from="1732682528217" duration="960000" />
+      <workItem from="1732682528217" duration="1958000" />
     </task>
     <servers />
   </component>
