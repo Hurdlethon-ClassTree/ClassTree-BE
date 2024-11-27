@@ -69,6 +69,10 @@ class QuestionUpdateSerializer(serializers.ModelSerializer):
         user = self.context['request'].user
         if user.pk != question.user_id.pk:  # 현재 사용자가 작성자와 일치하지 않으면
             raise serializers.ValidationError("작성자만 질문 내용을 수정할 수 있습니다.")
+        # 채택된 질문은 수정할 수 없도록
+        if question.checked:
+            raise serializers.ValidationError("채택된 질문은 수정할 수 없습니다.")
+
         return value
 
     def update(self, instance, validated_data):
