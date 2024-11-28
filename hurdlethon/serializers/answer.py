@@ -5,14 +5,16 @@ from ..models.answer import Answer
 class AnswerSerializer(serializers.ModelSerializer):
     question_title = serializers.CharField(source='question_id.title', read_only=True)
     answer_id = serializers.IntegerField(read_only=True)
+    username = serializers.CharField(source='user_id.username', read_only=True)  # 추가된 부분
 
+    
     class Meta:
         model = Answer
         fields = [
             'question_id','question_title',
             'answer_id', 'content',
             'created_at', 'modified_at',
-            'user_id', 'lecture_id', 'like_count', 'is_checked'
+            'user_id', 'lecture_id', 'like_count', 'is_checked', 'username'
         ]
 
 class AnswerUpdateSerializer(serializers.ModelSerializer):

@@ -18,7 +18,7 @@ class QuestionSerializer(serializers.ModelSerializer):
         model = Question
         fields = [ #professor 추가함
             'question_id', 'lecture_id','lecture_name', 'professor',
-            'title', 'content', 'curious_count','point', 'author',
+            'title', 'content', 'curious_count','point','user_id', 'author',
             'created_at', 'modified_at', 'checked', 'answers']
 
     def get_author(self, obj):
