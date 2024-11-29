@@ -57,6 +57,6 @@ class UserCreateSerializer(serializers.ModelSerializer):
         interests = self.validated_data.pop('interests',[])
 
         user=super().save(password=hashed_password, **kwargs)
-        user.interests = json.dumps(interests)
+        user.interests = interests
         user.save()
         return user

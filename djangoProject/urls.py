@@ -20,6 +20,7 @@ from hurdlethon.views.recent_question import RecentQuestionsView
 from hurdlethon.views.noanswerquestion import NoanswerQuestionsListView
 from hurdlethon.views.recent_lecture import RecentQuestionLectureView
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from hurdlethon.views.verify import VerifyVerificationCodeView
 
@@ -46,8 +47,8 @@ urlpatterns = [
 
     path('question/<int:question_id>/answer/<int:answer_id>/like/', LikeView.as_view(), name='like_view'), # 답변 좋아요
 
-    path("signup/email/", SendVerificationCodeView.as_view(), name="send_verification_code"),
-    path("signup/verify/", VerifyVerificationCodeView.as_view(), name="verify_code"),
+    path("signup/email/", csrf_exempt(SendVerificationCodeView.as_view()), name="send_verification_code"),
+    path("signup/verify/", csrf_exempt(VerifyVerificationCodeView.as_view()), name="verify_code"),
 
     path("recent/question/", RecentQuestionsView.as_view(), name="recent_questions"),
     path("recent/lecture", RecentQuestionLectureView.as_view(), name="recent_lecture"),
